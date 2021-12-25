@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+</head>
+
+<body>
+    <nav class="
+        navbar navbar-light navbar-expand-md
+        sticky-top
+        navigation-clean-button
+      ">
+        <div class="container">
+            <img src="{{ url_for('static', filename='img/android512.png') }}" height="80px" /><a class="navbar-brand" href="#">SCOE-AIRPORT</a
+        ><button
+          data-bs-toggle="collapse"
+          class="navbar-toggler"
+          data-bs-target="#navcol-1"
+        >
+          <span class="visually-hidden">Toggle navigation</span
+          ><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('schedule_view')}}">Schedule</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="dropdown-toggle nav-link"
+                aria-expanded="false"
+                data-bs-toggle="dropdown"
+                href="#"
+                >More</a
+              >
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">First Item</a
+                ><a class="dropdown-item" href="#">Second Item</a
+                ><a class="dropdown-item" href="#">Third Item</a>
+        </div>
+        </li>
+        </ul>
+        <span class="navbar-text actions" id="navbar-user-login-signup-actions">
+            <a class="login" href="{{ url_for('login_view') }}">Log In</a
+            ><a
+              class="btn btn-light action-button"
+              role="button"
+              href="{{ url_for('login_view') }}"
+              style="background: var(--bs-blue)"
+              >Sign Up</a
+            ></span
+          ><span class="navbar-text"></span>
+        <div class="d-flex align-items-xl-center" id="account-actions">
+            <div class="dropdown show" id="nav-user-account-actions">
+                <a class="dropdown-toggle btn" aria-expanded="true" data-bs-toggle="dropdown" href="#">My Account&nbsp;</a
+              >
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="myAccount.html">My Account</a
+                ><a class="dropdown-item" href="#"
+                  >Log out<i class="fas fa-sign-out-alt" style="margin: 5px"></i
+                ></a>
+            </div>
+        </div>
+        <img class="rounded-circle" id="profile-photo" style="width: 50px; height: 50px" src="{{ url_for('static', filename='img/building.jpg') }}" />
+        </div>
+        </div>
+        </div>
+    </nav>
+    {% block body %}{% endblock %}
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <!-- <script defer src="./init-firebase.js"></script> -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script defer src="{{ url_for('static', filename='js/firebase.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

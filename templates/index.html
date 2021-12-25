@@ -1,76 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>scoe-airport</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/Article-List.css">
-    <link rel="stylesheet" href="assets/css/Features-Blue.css">
-    <link rel="stylesheet" href="assets/css/Highlight-Phone.css">
-    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
-    <link rel="stylesheet" href="assets/css/Newsletter-Subscription-Form.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-
-<body>
-    <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button">
-        <div class="container"><img src="assets/img/android512.png" height="80px"><a class="navbar-brand" href="#">SCOE-AIRPORT</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Schedule</a></li>
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">More</a>
-                        <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
-                    </li>
-                </ul><span class="navbar-text actions"> <a class="login" href="#">Log In</a><a class="btn btn-light action-button" role="button" href="#" style="background: var(--bs-blue);">Sign Up</a></span>
-            </div>
-        </div>
-    </nav>
-    <div class="container">
-        <div data-bss-parallax-bg="true" style="height: 500px;background: url(&quot;assets/img/airport1.jpg&quot;) center / cover;">
-            <section class="newsletter-subscribe" style="background: rgba(255,255,255,0);height: 100%;">
-                <div class="container d-flex flex-column justify-content-evenly align-content-center align-items-lg-center" style="height: 100%;">
-                    <div class="intro">
-                        <h2 class="text-center text-dark">Start your adventure today!</h2>
-                        <p class="text-center text-dark">Connecting to all the major airpors.</p>
-                    </div>
-                    <form class="d-flex justify-content-center flex-wrap" method="post">
-                        <div class="mb-3"><input class="form-control" type="text"></div>
-                        <div class="mb-3"><button class="btn btn-primary" type="submit">TRAVEL</button></div>
-                    </form>
-                </div>
-            </section>
-        </div>
-    </div>
-    <div class="container">
-        <section class="article-list">
-            <div class="container">
+{% extends 'base.html' %} {% block body %}
+<div class="container">
+    <div data-bss-parallax-bg="true" style="
+          height: 500px;
+          background: url( {{ url_for( 'static', filename='img/airport1.jpg' ) }}) center / cover;
+          ">
+        <section class="newsletter-subscribe" style="background: rgba(255, 255, 255, 0); height: 100%">
+            <div class="
+          container
+          d-flex
+          flex-column
+          justify-content-evenly
+          align-content-center align-items-lg-center
+        " style="height: 100%">
                 <div class="intro">
-                    <h2 class="text-center">Travel in Comfort</h2>
-                    <p class="text-center">Equipped with best in class facilities.</p>
+                    <h2 class="text-center text-dark">Start your adventure today!</h2>
+                    <p class="text-center text-dark">
+                        Connecting to all the major airpors.
+                    </p>
                 </div>
-                <div class="row articles">
-                    <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="assets/img/airport-kiosk.jpg"></a>
+                <form class="d-flex justify-content-center flex-wrap" method="post">
+                    <div class="mb-3">
+                        <input class="form-control" type="text" id="destinations-searchbox" list="datalistOptions" /><datalist id="datalistOptions">
+              <option value="San Francisco"></option>
+              <option value="New York"></option>
+              <option value="Seattle"></option>
+              <option value="Los Angeles"></option>
+              <option value="Chicago"></option>
+            </datalist>
+                    </div>
+                    <div class="mb-3">
+                        <a class="btn btn-primary" role="button" id="search-destination" href="Schedule.html">TRAVEL</a
+            >
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
+<div class="container">
+  <section class="article-list">
+    <div class="container">
+      <div class="intro">
+        <h2 class="text-center">Travel in Comfort</h2>
+        <p class="text-center">Equipped with best in class facilities.</p>
+      </div>
+      <div class="row articles">
+        <div class="col-sm-6 col-md-4 item">
+          <a href="#"
+            ><img
+              class="img-fluid"
+              src="{{ url_for('static',filename='img/airport-kiosk.jpg') }}"
+          /></a>
                         <h3 class="name">Automatic Kiosk</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
+                        <p class="description">
+                            Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.
+                        </p>
+                        <a class="action" href="#"><i class="fa fa-arrow-circle-right"></i
+          ></a>
                     </div>
-                    <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="assets/img/airport-wifi.webp"></a>
+                    <div class="col-sm-6 col-md-4 item">
+                        <a href="#"><img class="img-fluid" src="{{ url_for('static',filename='img/airport-wifi.webp') }}" /></a>
                         <h3 class="name">Best Connectivity</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
+                        <p class="description">
+                            Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.
+                        </p>
+                        <a class="action" href="#"><i class="fa fa-arrow-circle-right"></i
+          ></a>
                     </div>
-                    <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="assets/img/airport-lounge.webp"></a>
+                    <div class="col-sm-6 col-md-4 item">
+                        <a href="#"><img class="img-fluid" src="{{ url_for('static',filename='img/airport-lounge.webp') }}" /></a>
                         <h3 class="name">Article Title</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
+                        <p class="description">
+                            Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.
+                        </p>
+                        <a class="action" href="#"><i class="fa fa-arrow-circle-right"></i
+          ></a>
                     </div>
-                </div>
             </div>
-        </section>
     </div>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-</body>
+    </section>
+</div>
 
-</html>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}
