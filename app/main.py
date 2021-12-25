@@ -13,6 +13,11 @@ def home_view():
     return render_template("index.html")
 
 
+@app.route("/test")
+def test():
+    return "App Working"
+
+
 @app.route("/schedule")
 def schedule_view():
     time = None
