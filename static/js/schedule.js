@@ -4,19 +4,18 @@ Date.prototype.addDays = function(days) {
     var date = new Date(this.valueOf());
     date.setDate(date.getDate() + days);
     return date;
-}
+};
 
-$(document).ready(
-    function() {
-        document.getElementById('start-date').valueAsDate = new Date()
-        document.getElementById('end-date').valueAsDate = new Date().addDays(10)
-    }
-)
-
+$(document).ready(function() {
+    document.getElementById("start-date").valueAsDate = new Date();
+    document.getElementById("end-date").valueAsDate = new Date().addDays(10);
+});
 
 $("#schedule-search").on("click", function() {
-    $("table>tbody").html("")
-    $("table>tbody").html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>');
+    $("table>tbody").html("");
+    $("table>tbody").html(
+        '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>'
+    );
 
     getData($("#start-date").val(), $("#end-date").val());
 });
@@ -33,12 +32,11 @@ function getData(startDate, endDate) {
         function(data) {
             schedule = data;
             $.post("/api/get/destinations", schedule[3], function(data2) {
-                console.log(data2)
+                console.log(data2);
                 if ($.isEmptyObject(data2)) {
                     $("table>tbody").html("");
-                    console.log("HERE")
                     window.alert("NO FLIGHTS AVAILABLE FOR THE GIVEN PERIOD");
-                    return
+                    return;
                 }
                 schedule["5"] = data2;
                 $("table>tbody").html("");
@@ -54,10 +52,11 @@ function getData(startDate, endDate) {
                         )
                         .append(
                             $("<td>").html(
-                                $("<button>")
+                                $("<a>")
                                 .addClass("btn btn-primary book-btn")
                                 .text("BOOK")
                                 .attr("trip_id", schedule["0"][row])
+                                .attr("href", "book/" + schedule["0"][row])
                             )
                         )
                     );
@@ -69,4 +68,16 @@ function getData(startDate, endDate) {
         },
         "json"
     );
+}
+
+function bookTicket(tripId) {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            var user = user;
+            window.location.assign("");
+        } else {
+            $("#nav-user-account-actions").hide();
+            console.log("No user login");
+        }
+    });
 }

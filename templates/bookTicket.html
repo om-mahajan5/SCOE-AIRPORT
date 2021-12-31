@@ -1,0 +1,52 @@
+{% extends 'base.html' %} {% block body %}
+<div class="container">
+    <div class="display-1 mb-3">Book Ticket</div>
+    <div class="mx-auto bg-light border border-primary rounded w-md-50">
+        <h2 class="mx-auto text-center p-2">FLIGHT DETAILS</h1>
+            <hr />
+            <table class="table table-hover w-100">
+                <tr id="departure-airport">
+                    <td class="label">DEPARTURE AIRPORT :</td>
+                    <td class="value">SCOE International Airport</td>
+                </tr>
+                <tr id="departure-city">
+                    <td class="label">DEPARTURE CITY :</td>
+                    <td class="value">Pune</td>
+                </tr>
+                <tr id="destination-airport">
+                    <td class="label">DESTINATION AIRPORT</td>
+                    <td class="value">{{ data.airport_name }}</td>
+                </tr>
+                <tr id="destination-city">
+                    <td class="label">DESTINATION CITY :</td>
+                    <td class="value">{{ data.city }}</td>
+                </tr>
+                <tr id="departure-city">
+                    <td class="label">DEPARTURE TIME :</td>
+                    <td class="value">{{ data.timestamp }}</td>
+                </tr>
+                <tr id="ticket-price">
+                    <td class="label">AIRLINE :</td>
+                    <td class="value">{{ data.airline_name }}</td>
+                    <tr id="ticket-price">
+                        <td class="label">TICKET PRICE :</td>
+                        <td class="value">{{ data.rate }}</td>
+                    </tr>
+                    <tr id="discount">
+                        <td class="label">EARLY BOOKING DISCOUNT :</td>
+                        <td class="value"></td>
+                    </tr>
+                    <tr id="total">
+                        <td class="label">TOTAL</td>
+                        <td class="value"></td>
+                    </tr>
+            </table>
+            <div class="btn-group d-flex">
+                <a href="/schedule" class="btn btn-secondary btn-lg">Back To Schedule</a>
+                <a class="btn btn-success btn-lg">BOOK</a>
+            </div>
+    </div>
+</div>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/bookTicket.js') }}"></script>
+{% endblock %}

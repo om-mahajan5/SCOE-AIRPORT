@@ -1,3 +1,5 @@
-from dbConnect.dbInteract import get
+# from dbConnect.dbInteract import get
+import datetime
 
-print(get("SELECT * FROM public.customer"))
+print(datetime.date.today().strftime("%d/%m/%Y"))
+# print(get("SELECT * FROM public.customer"))

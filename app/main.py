@@ -1,6 +1,6 @@
 from datetime import datetime, time, timedelta
 from flask import Flask, json, request, render_template
-from dbConnect.dbInteract import get
+from dbConnect.dbInteract import get, set
 import pandas as pd
 import csv
 
@@ -23,6 +23,31 @@ def schedule_view():
     time = None
     # schedule = get(f'SELECT * FROM schedule WHERE timestamp> {time if time != None else datetime.now().strftime("%Y-%m-%d %T")} ORDER BY "timestamp" DESC LIMIT 2')
     return render_template("schedule.html")
+
+
+@app.route("/book/<int:tripId>")
+def book_ticket_view(tripId):
+    tripId, icao, timestamp, city, rate, airport_name, airline_name = get(
+        f"""SELECT public.schedule.trip_id,public.schedule.icao,public.schedule.timestamp,public.destination.city,public.schedule.rate,public.destination.airport_name,public.plane.name FROM public.schedule
+JOIN public.destination
+ON public.schedule.icao = public.destination.icao
+JOIN public.plane
+ON public.schedule.flight_number = public.plane.flight_number
+WHERE public.schedule.trip_id={tripId};
+    """
+    )[0]
+
+    return render_template(
+        "bookTicket.html",
+        data={
+            "icao": icao,
+            "timestamp": timestamp,
+            "city": city,
+            "rate": rate,
+            "airport_name": airport_name,
+            "airline_name": airline_name,
+        },
+    )
 
 
 @app.route("/login")
@@ -90,3 +115,20 @@ def destinationPOST():
     # print(destinations.to_json(orient='index'))
     # print(destination_list)
     return destinations.to_dict(orient="index")
+
+
+@app.route("/api/get/ticketdetails")
+def get_ticket_details():
+    return "hi"
+
+
+@app.route("/api/book", methods=["POST"])
+def book_ticket():
+    if request.method == "POST":
+        tripId = request.form.get("tripId")
+        userId = request.form.get("uid")
+        price = request.form.get("price")
+        set(
+            f'INSERT INTO public.tickets (purchase_date,ticket_price,trip_id,email) VALUES (TO_DATE(\'{datetime.today().strftime("%d/%m/%Y")}\', \'DD/MM/YYYY\'),{price},{tripId},\'{userId}\')'
+        )
+    return "done"
