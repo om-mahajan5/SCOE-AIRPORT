@@ -15,35 +15,50 @@
                 </tr>
                 <tr id="destination-airport">
                     <td class="label">DESTINATION AIRPORT</td>
-                    <td class="value">{{ data.airport_name }}</td>
+                    <td class="value">
+                        <div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>
+                    </td>
                 </tr>
                 <tr id="destination-city">
                     <td class="label">DESTINATION CITY :</td>
-                    <td class="value">{{ data.city }}</td>
+                    <td class="value">
+                        <div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>
+                    </td>
                 </tr>
-                <tr id="departure-city">
+                <tr id="departure-time">
                     <td class="label">DEPARTURE TIME :</td>
-                    <td class="value">{{ data.timestamp }}</td>
+                    <td class="value">
+                        <div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>
+                    </td>
+                </tr>
+                <tr id="airline">
+                    <td class="label">AIRLINE :</td>
+                    <td class="value">
+                        <div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>
+                    </td>
                 </tr>
                 <tr id="ticket-price">
-                    <td class="label">AIRLINE :</td>
-                    <td class="value">{{ data.airline_name }}</td>
-                    <tr id="ticket-price">
-                        <td class="label">TICKET PRICE :</td>
-                        <td class="value">{{ data.rate }}</td>
-                    </tr>
-                    <tr id="discount">
-                        <td class="label">EARLY BOOKING DISCOUNT :</td>
-                        <td class="value"></td>
-                    </tr>
-                    <tr id="total">
-                        <td class="label">TOTAL</td>
-                        <td class="value"></td>
-                    </tr>
+                    <td class="label">TICKET PRICE :</td>
+                    <td class="value">
+                        <div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>
+                    </td>
+                </tr>
+                <tr id="discount">
+                    <td class="label">EARLY BOOKING DISCOUNT :</td>
+                    <td class="value">
+                        <div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>
+                    </td>
+                </tr>
+                <tr id="total">
+                    <td class="label">TOTAL</td>
+                    <td class="value">
+                        <div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>
+                    </td>
+                </tr>
             </table>
             <div class="btn-group d-flex">
                 <a href="/schedule" class="btn btn-secondary btn-lg">Back To Schedule</a>
-                <a class="btn btn-success btn-lg">BOOK</a>
+                <a class="btn btn-success btn-lg" id="book-btn">BOOK</a>
             </div>
     </div>
 </div>

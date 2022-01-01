@@ -117,9 +117,28 @@ def destinationPOST():
     return destinations.to_dict(orient="index")
 
 
-@app.route("/api/get/ticketdetails")
+@app.route("/api/get/ticketdetails", methods=["POST"])
 def get_ticket_details():
-    return "hi"
+    tripId = request.form.get("tripId")
+    tripId, icao, timestamp, city, rate, airport_name, airline_name = get(
+        f"""SELECT public.schedule.trip_id,public.schedule.icao,public.schedule.timestamp,public.destination.city,public.schedule.rate,public.destination.airport_name,public.plane.name FROM public.schedule
+JOIN public.destination
+ON public.schedule.icao = public.destination.icao
+JOIN public.plane
+ON public.schedule.flight_number = public.plane.flight_number
+WHERE public.schedule.trip_id={tripId};
+    """
+    )[0]
+
+    return {
+        "tripId": tripId,
+        "icao": icao,
+        "timestamp": timestamp,
+        "city": city,
+        "rate": rate,
+        "airport_name": airport_name,
+        "airline_name": airline_name,
+    }
 
 
 @app.route("/api/book", methods=["POST"])
@@ -128,6 +147,7 @@ def book_ticket():
         tripId = request.form.get("tripId")
         userId = request.form.get("uid")
         price = request.form.get("price")
+        print(tripId)
         set(
             f'INSERT INTO public.tickets (purchase_date,ticket_price,trip_id,email) VALUES (TO_DATE(\'{datetime.today().strftime("%d/%m/%Y")}\', \'DD/MM/YYYY\'),{price},{tripId},\'{userId}\')'
         )
