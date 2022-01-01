@@ -3,7 +3,7 @@ ticketDetails = {};
 
 $(document).ready(function() {
     $.post(
-        "/api/get/ticketdetails", { tripId: "110" },
+        "/api/get/ticketdetails", { tripId: window.location.pathname.slice(6) },
         function(data, textStatus, jqXHR) {
             console.log(data);
             ticketDetails = data;
@@ -68,6 +68,10 @@ function bookTicket() {
             uid: ticketDetails.uid,
         },
         function(data) {
+            if (data == "done") {
+                $("#book-btn").html("BOOKED").addClass("disabled");
+                alert("BOOKING CONFIRMED");
+            }
             console.log(data);
         }
     );
