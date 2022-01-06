@@ -1,0 +1,53 @@
+{% extends 'base.html' %}{% block title %}Ticket{% endblock %} {% block body %}
+<div class="container ">
+    <div class="shadow rounded bg-light p-3 ">
+        <div class="d-flex flex-column flex-wrap justify-content-between">
+            <div class="title text-primary">
+                <h1>BOARDING PASS</h1>
+                <hr />
+            </div>
+            <div class="content d-flex flex-row flex-wrap justify-content-evenly align-items-stretch flex-md-nowrap">
+                <div class="left-content w-75 d-flex flex-column justify-content-between">
+                    <div class="airline-name">
+                        <h2 class="text-dark">Luftansa</h2>
+                        <span class="text-muted">FLIGHT NO. : </span>123
+                    </div>
+                    <div class="journey d-flex flex-row flex-wrap align-items-center justify-content-between flex-grow-1">
+                        <div class="from w-lg-50">
+                            <div class="text-muted">FROM</div>
+                            <h3>PNQ</h3>
+                            Pune <br> Pune International
+                        </div>
+                        <div class="plane-icon">
+                            <!-- <img class="d-none d-sm-none d-md-flex" height="100px" src="http://www.mcicon.com/wp-content/uploads/2021/03/Airplane-13.jpg" alt=""> -->
+                        </div>
+                        <div class="to w-lg-50">
+                            <div class="text-muted">TO</div>
+                            <h3>BOM</h3>
+                            Mumbai <br> Mumbai International
+                        </div>
+                    </div>
+                    <div class="customer-details">
+                        <h3>Om Mahajan</h3>
+                        DEPARTURE TIME: 10:15 AM <br> DEPARTURE DATE: 10/12/12
+                    </div>
+                </div>
+                <div class="bg-white rounded align-self-stretch p-3">
+                    <div class="align-middle" id="qrcode"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}{% block scripts %}
+<script src="{{ url_for('static',filename='js/qrcode.min.js') }}"></script>
+<script type="text/javascript">
+    new QRCode(
+        document.getElementById("qrcode"), {
+            text: "http://192.168.1.100:5000/ticket"
+        }
+    );
+</script>
+
+{% endblock %}

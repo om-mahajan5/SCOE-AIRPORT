@@ -152,3 +152,8 @@ def book_ticket():
             f'INSERT INTO public.tickets (purchase_date,ticket_price,trip_id,email) VALUES (TO_DATE(\'{datetime.today().strftime("%d/%m/%Y")}\', \'DD/MM/YYYY\'),{price},{tripId},\'{userId}\')'
         )
     return "done"
+
+
+@app.route("/ticket")
+def ticket_view():
+    return render_template("ticket.html")

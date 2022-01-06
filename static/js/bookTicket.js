@@ -54,7 +54,7 @@ $("#book-btn").click(function(params) {
             bookTicket();
         } else {
             console.log("No user login");
-            alert("please Login First");
+            showToast("LOGIN REQUIRED!", "Please Login to book ticket");
             $("#book-btn").html("BOOK");
         }
     });
@@ -70,7 +70,7 @@ function bookTicket() {
         function(data) {
             if (data == "done") {
                 $("#book-btn").html("BOOKED").addClass("disabled");
-                alert("BOOKING CONFIRMED");
+                showToast("BOOKING CONFIRMED", `Ticket number is : ${"hi"}`);
             }
             console.log(data);
         }

@@ -1,8 +1,8 @@
-{% extends 'base.html' %} {% block body %}
+{% extends 'base.html' %} {% block title %}Ticket Details{% endblock %}{% block body %}
 <div class="container">
     <div class="display-1 mb-3">Book Ticket</div>
-    <div class="mx-auto bg-light border border-primary rounded w-md-50">
-        <h2 class="mx-auto text-center p-2">FLIGHT DETAILS</h1>
+    <div class="mx-auto bg-light rounded w-md-50">
+        <h2 class="mx-auto text-center pt-3">FLIGHT DETAILS</h1>
             <hr />
             <table class="table table-hover w-100">
                 <tr id="departure-airport">
@@ -57,7 +57,7 @@
                 </tr>
             </table>
             <div class="btn-group d-flex">
-                <a href="/schedule" class="btn btn-secondary btn-lg">Back To Schedule</a>
+                <a href="/schedule" class="btn btn-secondary btn-lg">BACK</a>
                 <a class="btn btn-success btn-lg" id="book-btn">BOOK</a>
             </div>
     </div>

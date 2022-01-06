@@ -35,7 +35,7 @@ function getData(startDate, endDate) {
                 console.log(data2);
                 if ($.isEmptyObject(data2)) {
                     $("table>tbody").html("");
-                    window.alert("NO FLIGHTS AVAILABLE FOR THE GIVEN PERIOD");
+                    showToast("NO FLIGHTS AVAILABLE", "Please slect a different range.");
                     return;
                 }
                 schedule["5"] = data2;
